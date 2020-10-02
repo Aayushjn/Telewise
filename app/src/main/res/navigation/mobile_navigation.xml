@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_movies">
+
+    <fragment
+        android:id="@+id/nav_movies"
+        android:name="com.aayush.telewise.ui.fragment.movies.MoviesFragment"
+        android:label="@string/title_movies"
+        tools:layout="@layout/fragment_movies"/>
+
+    <fragment
+        android:id="@+id/nav_tv"
+        android:name="com.aayush.telewise.ui.fragment.tv.TvFragment"
+        android:label="@string/title_tv"
+        tools:layout="@layout/fragment_tv"/>
+
+    <fragment
+        android:id="@+id/nav_people"
+        android:name="com.aayush.telewise.ui.fragment.people.PeopleFragment"
+        android:label="@string/title_people"
+        tools:layout="@layout/fragment_people"/>
+
+</navigation>

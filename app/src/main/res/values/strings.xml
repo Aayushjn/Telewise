@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Telewise</string>
+
+    <string name="title_movies">Movies</string>
+    <string name="title_tv">TV Series</string>
+    <string name="title_people">People</string>
+
+    <string name="action_retry">Retry</string>
+
+    <string name="explicit_content">Explicit Content</string>
+    <string name="movie_poster">Movie Poster</string>
 </resources>

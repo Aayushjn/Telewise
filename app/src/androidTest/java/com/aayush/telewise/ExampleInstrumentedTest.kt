@@ -1,4 +1,4 @@
-package com.telewise.telewise
+package com.aayush.telewise
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

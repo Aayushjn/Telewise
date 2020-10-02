@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_item"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_movies_64"
+            android:transitionName="imageView"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:weightSum="3">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_weight="0.1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                tools:text="Spider-Man: Into the Spider-Verse"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_item_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="5dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:ellipsize="end"
+                android:maxLines="5"
+                tools:text="Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson &quot;Kingpin&quot; Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension."/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_item_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_star_32"
+                    android:drawablePadding="2dp"
+                    tools:text="8.4"/>
+
+                <ImageView
+                    android:id="@+id/img_item_explicit"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_explicit_32"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:contentDescription="@string/explicit_content"
+                    android:layout_alignParentEnd="true"
+                    tools:visibility="visible"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,4 +1,4 @@
-package com.telewise.telewise
+package com.aayush.telewise
 
 import org.junit.Test
 

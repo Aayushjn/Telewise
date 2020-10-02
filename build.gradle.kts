@@ -16,9 +16,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven("https://jitpack.io")
     }
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile::class) {
+            options.encoding = "UTF-8"
             options.compilerArgs.addAll(arrayOf("-Xlint:unchecked", "-Xlint:deprecation"))
         }
     }
