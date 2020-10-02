@@ -9,6 +9,7 @@
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+        <item name="materialCardViewStyle">@style/Widget.App.MaterialCardView</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -17,6 +18,10 @@
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="itemTextAppearanceActive">@style/TextAppearance.MaterialComponents.Body1</item>
         <item name="itemTextAppearanceInactive">@style/TextAppearance.MaterialComponents.Body2</item>
+    </style>
+
+    <style name="Widget.App.MaterialCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorCardBackground</item>
     </style>
 
 </resources>

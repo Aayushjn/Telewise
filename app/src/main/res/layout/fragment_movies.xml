@@ -13,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:paddingTop="3dp"
-        android:paddingHorizontal="6dp">
+        android:paddingTop="3dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_movies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            tools:listitem="@layout/card_list_item"
             tools:itemCount="5" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

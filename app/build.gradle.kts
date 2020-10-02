@@ -5,13 +5,14 @@ plugins{
     id("kotlinx-serialization")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
     compileSdkVersion(30)
     defaultConfig {
         applicationId = "com.aayush.telewise"
-        minSdkVersion(21)
+        minSdkVersion(23)
         targetSdkVersion(30)
         versionCode = 1
         versionName =  "1.0"
@@ -59,7 +60,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-    implementation("androidx.paging:paging-common-ktx:3.0.0-alpha06")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha07")
     implementation("androidx.startup:startup-runtime:1.0.0-beta01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
@@ -75,6 +76,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0")
+
+    implementation("com.github.haroldadmin:NetworkResponseAdapter:4.0.1")
 
     implementation("com.jakewharton.threetenabp:threetenabp:1.2.4")
     implementation("com.jakewharton.timber:timber:4.7.1")

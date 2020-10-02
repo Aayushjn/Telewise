@@ -9,10 +9,11 @@ import com.aayush.telewise.R
 import com.aayush.telewise.databinding.ActivityMainBinding
 import com.aayush.telewise.util.android.findNavController
 import com.aayush.telewise.util.android.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
-    private val navController by lazy(LazyThreadSafetyMode.NONE) { findNavController(R.id.nav_host_fragment) }
 
     private val appBarConfiguration by lazy(LazyThreadSafetyMode.NONE) {
         AppBarConfiguration(setOf(R.id.nav_movies, R.id.nav_tv, R.id.nav_people))
@@ -22,9 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(findNavController(R.id.nav_host_fragment))
     }
 
     override fun onSupportNavigateUp(): Boolean =
-        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 }
