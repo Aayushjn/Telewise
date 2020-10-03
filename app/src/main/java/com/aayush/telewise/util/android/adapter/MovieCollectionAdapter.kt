@@ -1,4 +1,4 @@
-package com.aayush.telewise.ui.fragment.movies
+package com.aayush.telewise.util.android.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,16 +8,19 @@ import androidx.viewbinding.ViewBinding
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.aayush.telewise.R
-import com.aayush.telewise.api.model.ListMovie
 import com.aayush.telewise.databinding.CardListItemBinding
 import com.aayush.telewise.util.android.base.BasePagingAdapter
 import com.aayush.telewise.util.android.base.BaseViewHolder
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.common.IMAGE_CORNER_SIZE
 import com.aayush.telewise.util.common.IMAGE_URL_ORIGINAL
+import com.aayush.telewise.model.UiModel.MovieCollectionModel as Movie
 
-class ListMovieAdapter : BasePagingAdapter<ListMovie>(ListMovieCallback) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<out ViewBinding, ListMovie> =
+class MovieCollectionAdapter : BasePagingAdapter<Movie>(ListMovieCallback) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<out ViewBinding, Movie> =
         ListMovieViewHolder(
             CardListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -32,10 +35,10 @@ class ListMovieAdapter : BasePagingAdapter<ListMovie>(ListMovieCallback) {
 
     class ListMovieViewHolder(
         binding: CardListItemBinding
-    ) : BaseViewHolder<CardListItemBinding, ListMovie>(binding) {
-        override fun bindTo(item: ListMovie?) = with(binding) {
+    ) : BaseViewHolder<CardListItemBinding, Movie>(binding) {
+        override fun bindTo(item: Movie?) = with(binding) {
             if (item != null) {
-                imgItem.load(IMAGE_URL_ORIGINAL + (item.posterPath ?: item.backdropPath)) {
+                imgItem.load(IMAGE_URL_ORIGINAL + item.posterPath) {
                     transformations(RoundedCornersTransformation(IMAGE_CORNER_SIZE))
                     placeholder(R.drawable.ic_movies_64)
                     fallback(R.drawable.ic_movies_64)
@@ -44,16 +47,16 @@ class ListMovieAdapter : BasePagingAdapter<ListMovie>(ListMovieCallback) {
                 imgItem.contentDescription = root.context.getString(R.string.movie_poster)
                 textItemTitle.text = item.title
                 textItemOverview.text = item.overview
-                textItemRating.text = item.voteAverage.toString()
+                textItemRating.text = item.rating.toString()
                 imgItemExplicit.isVisible = item.adult == true
             }
         }
     }
 
     companion object {
-        private object ListMovieCallback : DiffUtil.ItemCallback<ListMovie>() {
-            override fun areItemsTheSame(oldItem: ListMovie, newItem: ListMovie): Boolean = oldItem.id == newItem.id
-            override fun areContentsTheSame(oldItem: ListMovie, newItem: ListMovie): Boolean = oldItem == newItem
+        private object ListMovieCallback : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem == newItem
         }
     }
 }

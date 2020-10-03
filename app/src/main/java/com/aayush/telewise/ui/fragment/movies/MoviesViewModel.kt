@@ -13,7 +13,7 @@ import com.aayush.telewise.util.common.PAGE_SIZE
 class MoviesViewModel @ViewModelInject constructor(
     repository: MovieRepository
 ) : ViewModel() {
-    val popularMoviesFlow = Pager(PagingConfig(PAGE_SIZE)) { PopularMoviePagingSource(repository) }
-        .flow
+    // TODO: Replace hardcoded parameters with SharedPreferences backed data
+    val popularMoviesFlow = repository.getPopularMovies("IN", true)
         .cachedIn(viewModelScope)
 }

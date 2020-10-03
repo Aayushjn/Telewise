@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aayush.telewise.R
 import com.aayush.telewise.databinding.FragmentMoviesBinding
 import com.aayush.telewise.util.android.adapter.ItemLoadStateAdapter
+import com.aayush.telewise.util.android.adapter.MovieCollectionAdapter
 import com.aayush.telewise.util.android.log
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.android.viewBinding
@@ -28,7 +29,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private val binding by viewBinding(FragmentMoviesBinding::bind)
     private val viewModel by viewModels<MoviesViewModel>()
 
-    private lateinit var adapter: ListMovieAdapter
+    private lateinit var adapter: MovieCollectionAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,13 +54,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     private fun initAdapter() {
-        adapter = ListMovieAdapter()
+        adapter = MovieCollectionAdapter()
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         binding.recyclerMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerMovies.adapter = adapter.withLoadStateHeaderAndFooter(
-            ItemLoadStateAdapter { adapter.retry() },
-            ItemLoadStateAdapter { adapter.retry() }
+            ItemLoadStateAdapter(adapter::retry),
+            ItemLoadStateAdapter(adapter::retry)
         )
         binding.recyclerMovies.setHasFixedSize(true)
 
