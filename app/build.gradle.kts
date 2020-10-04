@@ -60,7 +60,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha07")
-    implementation("androidx.palette:palette-ktx:1.0.0")
     implementation("androidx.startup:startup-runtime:1.0.0-beta01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
