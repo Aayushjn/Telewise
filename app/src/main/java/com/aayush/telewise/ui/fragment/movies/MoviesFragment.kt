@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aayush.telewise.R
 import com.aayush.telewise.databinding.FragmentMoviesBinding
-import com.aayush.telewise.util.android.adapter.ItemLoadStateAdapter
 import com.aayush.telewise.util.android.log
+import com.aayush.telewise.util.android.paging.adapter.ItemLoadStateAdapter
+import com.aayush.telewise.util.android.paging.adapter.MovieCollectionAdapter
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.android.viewBinding
+import com.aayush.telewise.util.common.ROOT_IDS
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,12 +30,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private val binding by viewBinding(FragmentMoviesBinding::bind)
     private val viewModel by viewModels<MoviesViewModel>()
 
-    private lateinit var adapter: ListMovieAdapter
+    private lateinit var adapter: MovieCollectionAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_movies, R.id.nav_tv, R.id.nav_people))
+        val appBarConfiguration = AppBarConfiguration(ROOT_IDS)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.layoutToolbar.toolbar)
         binding.layoutToolbar.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
 
@@ -53,13 +55,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     private fun initAdapter() {
-        adapter = ListMovieAdapter()
+        adapter = MovieCollectionAdapter()
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         binding.recyclerMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerMovies.adapter = adapter.withLoadStateHeaderAndFooter(
-            ItemLoadStateAdapter { adapter.retry() },
-            ItemLoadStateAdapter { adapter.retry() }
+            ItemLoadStateAdapter(adapter::retry),
+            ItemLoadStateAdapter(adapter::retry)
         )
         binding.recyclerMovies.setHasFixedSize(true)
 

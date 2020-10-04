@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="detail_backdrop_height">500dp</dimen>
+
+    <dimen name="card_margin_horizontal">8dp</dimen>
+    <dimen name="card_margin_vertical">4dp</dimen>
+    <!-- Collection width and height are set such that they are approximately 3:2 ratio  -->
+    <dimen name="card_collection_height">190dp</dimen>
+    <dimen name="image_collection_width">127dp</dimen>
+</resources>

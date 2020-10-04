@@ -5,11 +5,24 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/nav_movies">
 
+    <action android:id="@+id/navigate_to_movie_details"
+        app:destination="@id/nav_movie_details">
+        <argument
+            android:name="movie"
+            app:nullable="false"
+            app:argType="com.aayush.telewise.model.UiModel$MovieCollectionModel"/>
+    </action>
+
     <fragment
         android:id="@+id/nav_movies"
         android:name="com.aayush.telewise.ui.fragment.movies.MoviesFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies"/>
+        tools:layout="@layout/fragment_movies" />
+
+    <fragment
+        android:id="@+id/nav_movie_details"
+        android:name="com.aayush.telewise.ui.fragment.movies.details.MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details"/>
 
     <fragment
         android:id="@+id/nav_tv"
