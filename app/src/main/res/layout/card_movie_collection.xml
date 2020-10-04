@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="210dp"
-    android:layout_margin="8dp">
+    android:layout_height="@dimen/card_collection_height"
+    android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+    android:layout_marginVertical="@dimen/card_margin_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,11 +14,11 @@
 
         <ImageView
             android:id="@+id/img_item"
-            android:layout_width="140dp"
+            android:layout_width="@dimen/image_collection_width"
             android:layout_height="match_parent"
             android:src="@drawable/ic_movies_64"
-            android:transitionName="imageView"
-            tools:ignore="ContentDescription" />
+            android:contentDescription="@string/movie_poster"
+            android:transitionName="@string/transition_image" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,17 +30,17 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_item_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:layout_weight="0.1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 tools:text="Spider-Man: Into the Spider-Verse"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_item_overview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="2"
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -49,15 +50,15 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="5dp"
-                android:layout_weight="0.1">
+                android:layout_gravity="bottom">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_item_rating"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:gravity="center_vertical"
                     android:drawableStart="@drawable/ic_star_32"
                     android:drawablePadding="2dp"

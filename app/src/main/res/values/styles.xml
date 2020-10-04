@@ -1,8 +1,10 @@
 <resources>
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorSecondary</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorOnSecondary">@color/colorSecondary</item>
@@ -10,6 +12,7 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="materialCardViewStyle">@style/Widget.App.MaterialCardView</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -22,6 +25,10 @@
 
     <style name="Widget.App.MaterialCardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/colorCardBackground</item>
+    </style>
+
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/blue_silver</item>
     </style>
 
 </resources>

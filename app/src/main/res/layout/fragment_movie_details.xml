@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/layout_toolbar"
+        layout="@layout/collapsible_toolbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
+
+            <com.skydoves.androidveil.VeilLayout
+                android:id="@+id/veil_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:veilLayout_shimmerEnable="true"
+                app:veilLayout_veiled="true"
+                tools:veilLayout_veiled="false">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_movie_overview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        tools:text="Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson &quot;Kingpin&quot; Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension."/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_movie_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_star_32"
+                        android:drawablePadding="2dp"
+                        app:layout_constraintTop_toBottomOf="@id/text_movie_overview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="8.4"/>
+
+                    <ImageView
+                        android:id="@+id/img_movie_explicit"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_explicit_32"
+                        android:visibility="gone"
+                        android:contentDescription="@string/explicit_content"
+                        app:layout_constraintTop_toTopOf="@id/text_movie_rating"
+                        app:layout_constraintBottom_toBottomOf="@id/text_movie_rating"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:visibility="visible"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_movie_release_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintTop_toBottomOf="@id/text_movie_rating"
+                        tools:text="Release Date: 2018-12-06"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/text_movie_release_date"
+                        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/chip_genre"
+                        tools:visibility="visible"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.skydoves.androidveil.VeilLayout>
+
+            <com.skydoves.androidveil.VeilLayout
+                android:id="@+id/veil_external_ids"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:veilLayout_shimmerEnable="true"
+                app:veilLayout_veiled="true"
+                tools:veilLayout_veiled="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_tmdb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/ic_tmdb_48"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/tmdb" />
+
+                    <ImageButton
+                        android:id="@+id/btn_imdb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_imdb_48"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/imdb"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_fb_48"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/fb"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_insta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_insta_48"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/insta"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_twitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_twitter_48"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/twitter"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                </LinearLayout>
+
+            </com.skydoves.androidveil.VeilLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_label_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/cast"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <com.skydoves.androidveil.VeilRecyclerFrameView
+                android:id="@+id/veil_cast"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:veilFrame_layout="@layout/card_credits"
+                app:veilFrame_veiled="true"
+                app:veilFrame_shimmerEnable="true" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_label_crew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/crew"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <com.skydoves.androidveil.VeilRecyclerFrameView
+                android:id="@+id/veil_crew"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:veilFrame_layout="@layout/card_credits"
+                app:veilFrame_veiled="true"
+                app:veilFrame_shimmerEnable="true"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

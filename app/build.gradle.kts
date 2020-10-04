@@ -51,7 +51,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-    // implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc")
 
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
@@ -61,6 +60,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha07")
+    implementation("androidx.palette:palette-ktx:1.0.0")
     implementation("androidx.startup:startup-runtime:1.0.0-beta01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
@@ -84,7 +84,7 @@ dependencies {
 
     implementation("com.github.skydoves:androidveil:1.0.9")
 
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.4")
+    // debugImplementation("com.squareup.leakcanary:leakcanary-android:2.4")
 
     testImplementation("junit:junit:4.13")
 

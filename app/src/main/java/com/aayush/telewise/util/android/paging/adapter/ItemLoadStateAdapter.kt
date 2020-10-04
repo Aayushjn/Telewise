@@ -1,4 +1,4 @@
-package com.aayush.telewise.util.android.adapter
+package com.aayush.telewise.util.android.paging.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

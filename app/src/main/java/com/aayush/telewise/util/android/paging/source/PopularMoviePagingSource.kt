@@ -1,4 +1,4 @@
-package com.aayush.telewise.util.android.paging
+package com.aayush.telewise.util.android.paging.source
 
 import androidx.paging.PagingSource
 import com.aayush.telewise.api.model.ListMovie

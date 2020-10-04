@@ -9,4 +9,15 @@
 
     <string name="explicit_content">Explicit Content</string>
     <string name="movie_poster">Movie Poster</string>
+    <string name="release_date">Release Date: %s</string>
+
+    <string name="transition_image">img_transition</string>
+    <string name="tmdb">TMDb</string>
+    <string name="imdb">IMDb</string>
+    <string name="fb">Facebook</string>
+    <string name="insta">Instagram</string>
+    <string name="twitter">Twitter</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+    <string name="person_profile">Person Profile</string>
 </resources>

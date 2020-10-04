@@ -19,7 +19,7 @@
             android:id="@+id/recycler_movies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/card_list_item"
+            tools:listitem="@layout/card_movie_collection"
             tools:itemCount="5" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

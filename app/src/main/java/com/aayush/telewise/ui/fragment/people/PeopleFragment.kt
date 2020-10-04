@@ -11,6 +11,7 @@ import com.aayush.telewise.R
 import com.aayush.telewise.databinding.FragmentPeopleBinding
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.android.viewBinding
+import com.aayush.telewise.util.common.ROOT_IDS
 
 class PeopleFragment : Fragment(R.layout.fragment_people) {
     private val binding by viewBinding(FragmentPeopleBinding::bind)
@@ -18,7 +19,7 @@ class PeopleFragment : Fragment(R.layout.fragment_people) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_movies, R.id.nav_tv, R.id.nav_people))
+        val appBarConfiguration = AppBarConfiguration(ROOT_IDS)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.layoutToolbar.toolbar)
         binding.layoutToolbar.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
 
