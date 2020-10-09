@@ -62,7 +62,7 @@ class MovieCollectionAdapter : BasePagingAdapter<Movie>(ListMovieCallback) {
                     fallback(R.drawable.ic_movies_64)
                     error(R.drawable.ic_broken_image_64)
                 }
-                imgItem.contentDescription = root.context.getString(R.string.movie_poster)
+                imgItem.contentDescription = root.context.getString(R.string.movie_poster, item.title)
                 textItemTitle.text = item.title
                 textItemOverview.text = item.overview
                 textItemRating.text = item.rating.toString()

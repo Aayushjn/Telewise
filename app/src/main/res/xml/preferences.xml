@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="Content Settings"
+        app:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:key="telewise_KEY_EXPLICIT"
+            android:title="Show explicit content"
+            android:summary="Enabling this setting will include explicit content"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_explicit_40"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

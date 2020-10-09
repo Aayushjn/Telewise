@@ -1,6 +1,9 @@
 package com.aayush.telewise.ui.fragment.movies
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -13,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.aayush.telewise.MobileNavigationDirections
 import com.aayush.telewise.R
 import com.aayush.telewise.databinding.FragmentMoviesBinding
 import com.aayush.telewise.util.android.log
@@ -32,6 +36,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private lateinit var adapter: MovieCollectionAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,11 +57,22 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
 
         lifecycleScope.launch {
-            viewModel.popularMoviesFlow.collectLatest { movies ->
+            viewModel.getPopularMoviesFlow().collectLatest { movies ->
                 adapter.submitData(movies)
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) = inflater.inflate(R.menu.menu_main, menu)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.action_settings -> {
+                findNavController().navigate(MobileNavigationDirections.navigateToSettings())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 
     private fun initAdapter() {
         adapter = MovieCollectionAdapter()

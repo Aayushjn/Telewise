@@ -34,6 +34,7 @@ import com.aayush.telewise.util.common.TWITTER_PREFIX
 import com.aayush.telewise.util.common.VEILED_ITEM_COUNT
 import com.aayush.telewise.util.common.onError
 import com.aayush.telewise.util.common.onSuccess
+import com.aayush.telewise.util.common.toFormattedDate
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -114,6 +115,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                                 requireContext(),
                                 error.localizedMessage ?: error.toString()
                             )
+                            findNavController().navigateUp()
                         }
                 }
 
@@ -135,6 +137,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                                 requireContext(),
                                 error.localizedMessage ?: error.toString()
                             )
+                            findNavController().navigateUp()
                         }
                 }
 
@@ -158,6 +161,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                                 requireContext(),
                                 error.localizedMessage ?: error.toString()
                             )
+                            findNavController().navigateUp()
                         }
                 }
         }
@@ -165,7 +169,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
     private fun displayDetails(movie: UiModel.MovieModel) = with(binding) {
         textMovieOverview.text = movie.overview
-        textMovieReleaseDate.text = getString(R.string.release_date, movie.releaseDate)
+        textMovieReleaseDate.text = getString(R.string.release_date, movie.releaseDate.toFormattedDate())
         textMovieRating.text = movie.rating.toString()
         imgMovieExplicit.isVisible = movie.adult
 
