@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffc7b8</color>
-    <color name="colorPrimaryVariant">#fb805f</color>
-    <color name="colorSecondary">#b8f0ff</color>
-    <color name="colorSecondaryVariant">#5fdbfb</color>
-    <color name="colorOnPrimary">@android:color/black</color>
+    <color name="colorPrimary">#ed4018</color>
+    <color name="colorPrimaryVariant">#c62908</color>
+    <color name="colorSecondary">#18c6ed</color>
+    <color name="colorSecondaryVariant">#02a1bd</color>
+    <color name="colorOnPrimary">@android:color/white</color>
     <color name="colorOnSecondary">@android:color/black</color>
-    <color name="colorSurface">@android:color/white</color>
+    <color name="colorSurface">#fafafa</color>
     <color name="colorOnSurface">@android:color/black</color>
+    <color name="colorError">#b00020</color>
+    <color name="colorOnError">@android:color/white</color>
 
     <color name="colorCardBackground">#fcfafa</color>
 
     <color name="metallic_gold">#D4AF37</color>
     <color name="blue_silver">#bcc6cc</color>
+    <color name="dark_silver">#6c7a86</color>
 </resources>
