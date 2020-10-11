@@ -15,6 +15,7 @@ The purpose of this repository is to help me keep up with the latest (and greate
     - **Repository** pattern
     - **Dagger** and **Hilt** for dependency injection
 - JetPack **Navigation** (following a *single activity, multiple fragments* approach)
+- JetPack **DataStore** for storing application preferences (instead of SharedPreferences)
 - AndroidX **App Startup** library for setting up necessary dependencies at app startup
 - **Material Design** (my best attempt at it so far)
 - **[Retrofit2](https://square.github.io/retrofit/)** and **[kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)** for REST API

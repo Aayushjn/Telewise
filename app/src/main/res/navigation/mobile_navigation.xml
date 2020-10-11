@@ -6,12 +6,17 @@
     app:startDestination="@id/nav_movies">
 
     <action android:id="@+id/navigate_to_movie_details"
-        app:destination="@id/nav_movie_details">
+        app:destination="@id/nav_movie_details"
+        app:enterAnim="@anim/slide_in_right"
+        app:popExitAnim="@android:anim/slide_out_right">
         <argument
             android:name="movie"
             app:nullable="false"
             app:argType="com.aayush.telewise.model.UiModel$MovieCollectionModel"/>
     </action>
+
+    <action android:id="@+id/navigate_to_settings"
+        app:destination="@id/nav_settings"/>
 
     <fragment
         android:id="@+id/nav_movies"
@@ -35,5 +40,11 @@
         android:name="com.aayush.telewise.ui.fragment.people.PeopleFragment"
         android:label="@string/title_people"
         tools:layout="@layout/fragment_people"/>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.aayush.telewise.ui.fragment.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings"/>
 
 </navigation>

@@ -2,6 +2,7 @@ package com.aayush.telewise.model
 
 import android.os.Parcel
 import com.aayush.telewise.api.model.ListMovie
+import com.aayush.telewise.api.model.PopularPerson
 import com.aayush.telewise.api.model.TmdbMovie
 import com.aayush.telewise.api.model.TmdbMovieCast
 import com.aayush.telewise.api.model.TmdbMovieCrew
@@ -81,12 +82,14 @@ sealed class UiModel {
     }
 
     data class Person(
+        val adult: Boolean = false,
         val id: Int,
         val name: String,
         val role: String,   // character for cast and job for crew
         val profilePath: String?
     ) : UiModel(), KParcelable {
         private constructor(parcel: Parcel): this(
+            parcel.readBool(),
             parcel.readInt(),
             parcel.readString()!!,
             parcel.readString()!!,
@@ -94,6 +97,7 @@ sealed class UiModel {
         )
 
         override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            writeBool(adult)
             writeInt(id)
             writeString(name)
             writeString(role)
@@ -129,6 +133,7 @@ sealed class UiModel {
         )
 
         infix fun of(cast: TmdbMovieCast): Person = Person(
+            false,
             cast.id,
             cast.name,
             cast.character,
@@ -136,10 +141,19 @@ sealed class UiModel {
         )
 
         infix fun of(crew: TmdbMovieCrew): Person = Person(
+            false,
             crew.id,
             crew.name,
             crew.job,
             crew.profilePath
+        )
+
+        infix fun of(person: PopularPerson): Person = Person(
+            person.adult,
+            person.id,
+            person.name,
+            "",
+            person.profilePath
         )
     }
 }

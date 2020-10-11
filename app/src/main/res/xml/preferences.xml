@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="App Settings"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:key="telewise_KEY_THEME"
+            android:title="App Theme"
+            android:icon="@drawable/ic_color_lens_40"
+            android:entries="@array/theme_labels"
+            android:entryValues="@array/theme_values"
+            android:defaultValue="@string/default_theme"/>
+
+        <SwitchPreference
+            android:key="telewise_KEY_SAVE_DATA"
+            android:title="Reduce data usage"
+            android:summary="Enabling this setting will reduce data consumption"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_data_usage_40"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Content Settings"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:key="telewise_KEY_EXPLICIT"
+            android:title="Show explicit content"
+            android:summary="Enabling this setting will include explicit content"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_explicit_40"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

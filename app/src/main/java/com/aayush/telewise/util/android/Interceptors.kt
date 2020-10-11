@@ -25,7 +25,7 @@ class CacheInterceptor(private val context: Context) : Interceptor {
             request.newBuilder()
                 .header(
                     "Cache-Control",
-                    "public, only-if-cached, max-stale=2419200"
+                    "public, only-if-cached, max-stale=86400"
                 )
                 .build()
         }

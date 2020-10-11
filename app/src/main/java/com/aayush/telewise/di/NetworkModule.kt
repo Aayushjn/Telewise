@@ -2,7 +2,9 @@ package com.aayush.telewise.di
 
 import android.content.Context
 import com.aayush.telewise.api.service.MovieApi
+import com.aayush.telewise.api.service.PeopleApi
 import com.aayush.telewise.repository.MovieRepository
+import com.aayush.telewise.repository.PeopleRepository
 import com.aayush.telewise.util.android.getOkHttpClient
 import com.aayush.telewise.util.common.BASE_URL
 import com.aayush.telewise.util.common.JSON
@@ -37,4 +39,19 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideMovieRepository(movieApi: MovieApi): MovieRepository = MovieRepository(movieApi)
+
+    @Singleton
+    @Provides
+    fun providePeopleApi(@ApplicationContext context: Context): PeopleApi =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
+            .addConverterFactory(JSON.asConverterFactory("application/json".toMediaType()))
+            .client(getOkHttpClient(context))
+            .build()
+            .create()
+
+    @Singleton
+    @Provides
+    fun providePeopleRepository(peopleApi: PeopleApi): PeopleRepository = PeopleRepository(peopleApi)
 }

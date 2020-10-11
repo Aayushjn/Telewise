@@ -2,7 +2,7 @@ plugins{
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
-    id("kotlinx-serialization")
+    kotlin("plugin.serialization")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
@@ -48,18 +48,22 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10")
+    implementation(kotlin("stdlib-jdk7","1.4.10"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
 
     implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.2")
+    implementation("androidx.datastore:datastore-core:1.0.0-alpha01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-alpha01")
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha07")
+    implementation("androidx.preference:preference-ktx:1.1.1")
     implementation("androidx.startup:startup-runtime:1.0.0-beta01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
@@ -74,7 +78,7 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     implementation("com.github.haroldadmin:NetworkResponseAdapter:4.0.1")
 

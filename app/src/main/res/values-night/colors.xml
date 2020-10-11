@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffc7b8</color>
+    <color name="colorPrimaryVariant">#fb805f</color>
+    <color name="colorSecondary">#b8f0ff</color>
+    <color name="colorSecondaryVariant">#5fdbfb</color>
+    <color name="colorOnPrimary">@android:color/black</color>
+    <color name="colorOnSecondary">@android:color/black</color>
+    <color name="colorSurface">#131313</color>
+    <color name="colorOnSurface">@android:color/white</color>
+    <color name="colorError">#e93f3f</color>
+    <color name="colorOnError">@android:color/white</color>
+
+    <color name="colorCardBackground">#2c2c2c</color>
+</resources>

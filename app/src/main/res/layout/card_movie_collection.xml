@@ -17,8 +17,8 @@
             android:layout_width="@dimen/image_collection_width"
             android:layout_height="match_parent"
             android:src="@drawable/ic_movies_64"
-            android:contentDescription="@string/movie_poster"
-            android:transitionName="@string/transition_image" />
+            android:transitionName="@string/transition_image"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
