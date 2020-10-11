@@ -1,11 +1,6 @@
 package com.aayush.telewise.model
 
 import android.os.Parcel
-import com.aayush.telewise.api.model.ListMovie
-import com.aayush.telewise.api.model.PopularPerson
-import com.aayush.telewise.api.model.TmdbMovie
-import com.aayush.telewise.api.model.TmdbMovieCast
-import com.aayush.telewise.api.model.TmdbMovieCrew
 import com.aayush.telewise.util.android.KParcelable
 import com.aayush.telewise.util.android.parcelableCreator
 import com.aayush.telewise.util.android.readBool
@@ -81,7 +76,7 @@ sealed class UiModel {
         }
     }
 
-    data class Person(
+    data class PersonCollectionModel(
         val adult: Boolean = false,
         val id: Int,
         val name: String,
@@ -105,55 +100,75 @@ sealed class UiModel {
         }
 
         companion object {
-            @JvmField val CREATOR = parcelableCreator(::Person)
+            @JvmField val CREATOR = parcelableCreator(::PersonCollectionModel)
         }
     }
 
-    companion object {
-        infix fun of(movie: ListMovie): MovieCollectionModel = MovieCollectionModel(
-            movie.adult,
-            movie.posterPath ?: movie.backdropPath,
-            movie.id,
-            movie.overview,
-            movie.voteAverage,
-            movie.title
+    data class PersonModel(
+        val adult: Boolean,
+        val biography: String,
+        val birthday: String?,
+        val deathday: String?,
+        val id: Int,
+        val name: String,
+        val placeOfBirth: String?,
+        val profilePath: String?
+    ) : UiModel(), KParcelable {
+        private constructor(parcel: Parcel): this(
+            parcel.readBool(),
+            parcel.readString()!!,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readString()!!,
+            parcel.readString(),
+            parcel.readString()
         )
 
-        infix fun of(movie: TmdbMovie): MovieModel = MovieModel(
-            movie.adult,
-            movie.posterPath ?: movie.backdropPath,
-            movie.genres.map { genre ->
-                genre.name
-            },
-            movie.id,
-            movie.overview,
-            movie.voteAverage,
-            movie.releaseDate,
-            movie.title
-        )
+        override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            writeBool(adult)
+            writeString(biography)
+            writeString(birthday)
+            writeString(deathday)
+            writeInt(id)
+            writeString(name)
+            writeString(placeOfBirth)
+            writeString(profilePath)
+        }
 
-        infix fun of(cast: TmdbMovieCast): Person = Person(
-            false,
-            cast.id,
-            cast.name,
-            cast.character,
-            cast.profilePath
-        )
-
-        infix fun of(crew: TmdbMovieCrew): Person = Person(
-            false,
-            crew.id,
-            crew.name,
-            crew.job,
-            crew.profilePath
-        )
-
-        infix fun of(person: PopularPerson): Person = Person(
-            person.adult,
-            person.id,
-            person.name,
-            "",
-            person.profilePath
-        )
+        companion object {
+            @JvmField val CREATOR = parcelableCreator(::PersonModel)
+        }
     }
+
+    data class PersonCreditsModel(
+        val id: Int,
+        val mediaType: String,
+        val profilePath: String?,
+        val role: String,
+        val title: String,
+    ) : UiModel(), KParcelable {
+        private constructor(parcel: Parcel) : this(
+            parcel.readInt(),
+            parcel.readString()!!,
+            parcel.readString(),
+            parcel.readString()!!,
+            parcel.readString()!!
+        )
+
+        override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            writeInt(id)
+            writeString(mediaType)
+            writeString(profilePath)
+            writeString(role)
+            writeString(title)
+        }
+
+        companion object {
+            @JvmField val CREATOR = parcelableCreator(::PersonCreditsModel)
+        }
+    }
+
+    // Required to define infix extensions
+    companion object
 }

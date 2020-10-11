@@ -4,7 +4,8 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.aayush.telewise.model.UiModel
+import com.aayush.telewise.model.UiModel.MovieModel
+import com.aayush.telewise.model.UiModel.PersonCollectionModel
 import com.aayush.telewise.repository.MovieRepository
 import com.aayush.telewise.util.common.Result
 import com.aayush.telewise.util.common.resultFlow
@@ -14,12 +15,12 @@ class MovieDetailsViewModel @ViewModelInject constructor(
     private val repository: MovieRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    fun saveMovie(movie: UiModel.MovieModel) = savedStateHandle.set(KEY_MOVIE, movie)
+    fun saveMovie(movie: MovieModel) = savedStateHandle.set(KEY_MOVIE, movie)
 
     fun saveExternalIds(ids: Map<String, String?>) = savedStateHandle.set(KEY_EXTERNAL_IDS, ids)
 
-    suspend fun getMovieDetails(movieId: Int): Flow<Result<UiModel.MovieModel, Throwable>> {
-        val movie = savedStateHandle.get<UiModel.MovieModel>(KEY_MOVIE)
+    suspend fun getMovieDetails(movieId: Int): Flow<Result<MovieModel, Throwable>> {
+        val movie = savedStateHandle.get<MovieModel>(KEY_MOVIE)
         return if (movie == null || movie.id != movieId) {
             repository.getMovieDetails(movieId)
         } else {
@@ -36,12 +37,11 @@ class MovieDetailsViewModel @ViewModelInject constructor(
         }
     }
 
-    suspend fun getMovieCredits(movieId: Int): Flow<Result<Map<String, List<UiModel.Person>>, Throwable>> =
+    suspend fun getMovieCredits(movieId: Int): Flow<Result<Map<String, List<PersonCollectionModel>>, Throwable>> =
         repository.getMovieCredits(movieId)
 
     companion object {
         private const val KEY_MOVIE = "MovieKey"
         private const val KEY_EXTERNAL_IDS = "ExternalIdsKey"
-        private const val KEY_CREDITS = "CreditsKey"
     }
 }

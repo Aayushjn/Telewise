@@ -35,57 +35,55 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_movie_overview"
+                        android:id="@+id/text_biography"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toTopOf="parent"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        tools:text="Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson &quot;Kingpin&quot; Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension."/>
+                        tools:text="Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. Downey made his screen debut in 1970, at the age of five, when he appeared in his father's film Pound, and has worked consistently in film and television ever since. He received two Academy Award nominations for his roles in films Chaplin (1992) and Tropic Thunder (2008).\n\nDowney Jr. is most known for his role in the Marvel Cinematic Universe as Tony Stark/Iron Man. He has appeared as the character in Iron Man (2008), The Incredible Hulk (2008), Iron Man 2 (2010), The Avengers (2012), Iron Man 3 (2013), Avengers: Age of Ultron (2015), Captain America: Civil War (2016), Spider-Man: Homecoming (2017), Avengers: Infinity War (2018), and Avengers: Endgame (2019). The character is the most notable in the Marvel Cinematic Universe, and helped transcend the franchise into the goliath that it is today."/>
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_movie_rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:id="@+id/text_place_of_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_marginTop="5dp"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                        android:gravity="center_vertical"
-                        android:drawableStart="@drawable/ic_star_32"
-                        android:drawablePadding="2dp"
-                        app:layout_constraintTop_toBottomOf="@id/text_movie_overview"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintTop_toBottomOf="@id/text_biography"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:text="8.4"/>
-
-                    <ImageView
-                        android:id="@+id/img_movie_explicit"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_explicit_32"
-                        android:visibility="gone"
-                        android:contentDescription="@string/explicit_content"
-                        app:layout_constraintTop_toTopOf="@id/text_movie_rating"
-                        app:layout_constraintBottom_toBottomOf="@id/text_movie_rating"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:visibility="visible"/>
+                        tools:text="Place of Birth: Manhattan, New York City, New York, USA"/>
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_movie_release_date"
+                        android:id="@+id/text_birthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                        app:layout_constraintTop_toBottomOf="@id/text_movie_rating"
-                        tools:text="Release Date: 2018-12-06"/>
+                        app:layout_constraintTop_toBottomOf="@id/text_place_of_birth"
+                        tools:text="Date of Birth: 1965-04-04"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_genres"
+                    <ImageView
+                        android:id="@+id/img_person_explicit"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_explicit_40"
+                        android:visibility="gone"
+                        android:contentDescription="@string/explicit_content"
+                        app:layout_constraintTop_toTopOf="@id/text_birthday"
+                        app:layout_constraintBottom_toBottomOf="@id/text_deathday"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:visibility="visible"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_deathday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/text_movie_release_date"
-                        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="5"
-                        tools:listitem="@layout/chip_genre"
+                        app:layout_constraintTop_toBottomOf="@id/text_birthday"
+                        tools:text="Date of Death: N/A"
                         tools:visibility="visible"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,7 +176,7 @@
                 android:id="@+id/veil_cast"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                app:veilFrame_layout="@layout/card_movie_credits"
+                app:veilFrame_layout="@layout/card_person_credits"
                 app:veilFrame_veiled="true"
                 app:veilFrame_shimmerEnable="true" />
 
@@ -194,7 +192,7 @@
                 android:id="@+id/veil_crew"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                app:veilFrame_layout="@layout/card_movie_credits"
+                app:veilFrame_layout="@layout/card_person_credits"
                 app:veilFrame_veiled="true"
                 app:veilFrame_shimmerEnable="true"/>
 

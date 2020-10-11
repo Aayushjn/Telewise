@@ -15,7 +15,7 @@ class PeopleViewModel @ViewModelInject constructor(
     private val repository: PeopleRepository,
     private val preferences: AppPreferences
 ) : ViewModel() {
-    suspend fun getPopularPeopleFlow(): Flow<PagingData<UiModel.Person>> =
+    suspend fun getPopularPeopleFlow(): Flow<PagingData<UiModel.PersonCollectionModel>> =
         repository.getPopularPeople(
             preferences.showExplicit.first()
         ).cachedIn(viewModelScope)

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="130dp"
     android:layout_height="220dp"
@@ -13,20 +12,21 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/img_person"
+            android:id="@+id/img_item"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:src="@drawable/ic_people_64"
-            android:contentDescription="@string/person_profile" />
+            android:src="@drawable/ic_movies_24"
+            android:transitionName="@string/transition_image"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_name"
+            android:id="@+id/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            tools:text="Robert Downey Jr."/>
+            tools:text="Iron Man"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_role"
@@ -35,7 +35,9 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            tools:text="Iron Man"/>
+            android:drawableTint="@color/colorOnSurface"
+            tools:drawableEnd="@drawable/ic_movies_24"
+            tools:text="Tony Stark / Iron Man"/>
 
     </LinearLayout>
 

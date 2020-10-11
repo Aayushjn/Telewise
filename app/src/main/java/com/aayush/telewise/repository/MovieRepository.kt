@@ -7,11 +7,14 @@ import androidx.paging.filter
 import androidx.paging.map
 import com.aayush.telewise.api.service.MovieApi
 import com.aayush.telewise.model.UiModel
+import com.aayush.telewise.model.UiModel.MovieModel
+import com.aayush.telewise.model.UiModel.PersonCollectionModel
 import com.aayush.telewise.util.android.paging.source.PopularMoviePagingSource
 import com.aayush.telewise.util.common.PAGE_SIZE
 import com.aayush.telewise.util.common.Result
 import com.aayush.telewise.util.common.flow
 import com.aayush.telewise.util.common.map
+import com.aayush.telewise.util.common.of
 import com.aayush.telewise.util.common.result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -34,7 +37,7 @@ class MovieRepository(private val movieApi: MovieApi) {
                     }
             }
 
-    suspend fun getMovieDetails(movieId: Int): Flow<Result<UiModel.MovieModel, Throwable>> =
+    suspend fun getMovieDetails(movieId: Int): Flow<Result<MovieModel, Throwable>> =
         movieApi.getMovieById(movieId).result()
             .map { movie -> UiModel of movie }
             .flow()
@@ -52,7 +55,7 @@ class MovieRepository(private val movieApi: MovieApi) {
             }
             .flow()
 
-    suspend fun getMovieCredits(movieId: Int): Flow<Result<Map<String, List<UiModel.Person>>, Throwable>> =
+    suspend fun getMovieCredits(movieId: Int): Flow<Result<Map<String, List<PersonCollectionModel>>, Throwable>> =
         movieApi.getMovieCredits(movieId).result()
             .map { credits ->
                 mapOf(

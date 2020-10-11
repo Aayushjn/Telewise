@@ -15,6 +15,16 @@
             app:argType="com.aayush.telewise.model.UiModel$MovieCollectionModel"/>
     </action>
 
+    <action android:id="@+id/navigate_to_person_details"
+        app:destination="@id/nav_person_details"
+        app:enterAnim="@anim/slide_in_right"
+        app:popExitAnim="@android:anim/slide_out_right">
+        <argument
+            android:name="person"
+            app:nullable="false"
+            app:argType="com.aayush.telewise.model.UiModel$PersonCollectionModel"/>
+    </action>
+
     <action android:id="@+id/navigate_to_settings"
         app:destination="@id/nav_settings"/>
 
@@ -40,6 +50,11 @@
         android:name="com.aayush.telewise.ui.fragment.people.PeopleFragment"
         android:label="@string/title_people"
         tools:layout="@layout/fragment_people"/>
+
+    <fragment
+        android:id="@+id/nav_person_details"
+        android:name="com.aayush.telewise.ui.fragment.people.details.PersonDetailsFragment"
+        tools:layout="@layout/fragment_person_details"/>
 
     <fragment
         android:id="@+id/nav_settings"

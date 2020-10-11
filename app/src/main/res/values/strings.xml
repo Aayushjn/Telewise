@@ -12,6 +12,9 @@
     <string name="movie_poster">Poster of %s</string>
     <string name="person_profile">Profile of %s</string>
     <string name="release_date">Release Date: %s</string>
+    <string name="birthday">Birthday: %s</string>
+    <string name="deathday">Died on %s</string>
+    <string name="place_of_birth">Place of Birth: %s</string>
 
     <string name="transition_image">img_transition</string>
     <string name="tmdb">TMDb</string>
