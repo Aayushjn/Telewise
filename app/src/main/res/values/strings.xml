@@ -21,4 +21,6 @@
     <string name="twitter">Twitter</string>
     <string name="cast">Cast</string>
     <string name="crew">Crew</string>
+
+    <string name="default_theme">-1</string>
 </resources>

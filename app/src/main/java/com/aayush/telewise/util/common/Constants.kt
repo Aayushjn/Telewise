@@ -1,5 +1,6 @@
 package com.aayush.telewise.util.common
 
+import androidx.appcompat.app.AppCompatDelegate
 import com.aayush.telewise.R
 import kotlinx.serialization.json.Json
 
@@ -20,8 +21,10 @@ const val VEILED_ITEM_COUNT = 5
 const val TOOLBAR_COLLAPSE_HEIGHT_PX = 150
 
 const val DATA_STORE_FILE = "telewise_prefs"
-const val DEFAULT_REGION = "IN"
+const val DEFAULT_REGION = "US"
 const val DEFAULT_SHOW_EXPLICIT = false
+const val DEFAULT_THEME = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+const val DEFAULT_SAVE_DATA = true
 
 val ROOT_IDS = setOf(R.id.nav_movies, R.id.nav_tv, R.id.nav_people)
 

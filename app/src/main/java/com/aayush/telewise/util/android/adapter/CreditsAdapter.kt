@@ -9,10 +9,12 @@ import com.aayush.telewise.model.UiModel
 import com.aayush.telewise.util.android.base.BaseAdapter
 import com.aayush.telewise.util.android.base.BaseViewHolder
 import com.aayush.telewise.util.android.toast
+import com.aayush.telewise.util.common.IMAGE_URL_ORIGINAL
 import com.aayush.telewise.util.common.IMAGE_URL_W500
 
 class CreditsAdapter(
-    items: List<UiModel.Person>
+    items: List<UiModel.Person>,
+    private val saveData: Boolean
 ) : BaseAdapter<CreditsAdapter.CreditsViewHolder, UiModel.Person>(items, true) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreditsViewHolder =
         CreditsViewHolder(
@@ -20,7 +22,8 @@ class CreditsAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            saveData
         ).also { holder ->
             holder.setOnClickListener { view ->
                 toast(view.context, items[holder.bindingAdapterPosition].name)
@@ -30,10 +33,12 @@ class CreditsAdapter(
     override fun getItemId(position: Int): Long = items[position].hashCode().toLong()
 
     inner class CreditsViewHolder(
-        binding: CardCreditsBinding
+        binding: CardCreditsBinding,
+        private val saveData: Boolean
     ) : BaseViewHolder<CardCreditsBinding, UiModel.Person>(binding) {
         override fun bindTo(item: UiModel.Person?) = with(binding) {
-            imgPerson.load(IMAGE_URL_W500 + item?.profilePath) {
+            val prefix = if (saveData) IMAGE_URL_W500 else IMAGE_URL_ORIGINAL
+            imgPerson.load(prefix + item?.profilePath) {
                 placeholder(R.drawable.ic_people_64)
                 fallback(R.drawable.ic_people_64)
                 error(R.drawable.ic_broken_image_64)

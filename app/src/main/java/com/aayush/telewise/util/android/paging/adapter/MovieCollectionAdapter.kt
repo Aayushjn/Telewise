@@ -16,10 +16,11 @@ import com.aayush.telewise.util.android.base.BasePagingAdapter
 import com.aayush.telewise.util.android.base.BaseViewHolder
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.common.IMAGE_CORNER_SIZE
+import com.aayush.telewise.util.common.IMAGE_URL_ORIGINAL
 import com.aayush.telewise.util.common.IMAGE_URL_W500
 import com.aayush.telewise.model.UiModel.MovieCollectionModel as Movie
 
-class MovieCollectionAdapter : BasePagingAdapter<Movie>(ListMovieCallback) {
+class MovieCollectionAdapter(private val saveData: Boolean) : BasePagingAdapter<Movie>(ListMovieCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,7 +30,8 @@ class MovieCollectionAdapter : BasePagingAdapter<Movie>(ListMovieCallback) {
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            saveData
         ).also { holder ->
             holder.setOnClickListener { view ->
                 val movie = getItem(holder.bindingAdapterPosition)
@@ -52,11 +54,13 @@ class MovieCollectionAdapter : BasePagingAdapter<Movie>(ListMovieCallback) {
         }
 
     private inner class ListMovieViewHolder(
-        binding: CardMovieCollectionBinding
+        binding: CardMovieCollectionBinding,
+        private val saveData: Boolean
     ) : BaseViewHolder<CardMovieCollectionBinding, Movie>(binding) {
         override fun bindTo(item: Movie?) = with(binding) {
             if (item != null) {
-                imgItem.load(IMAGE_URL_W500 + item.posterPath) {
+                val prefix = if (saveData) IMAGE_URL_W500 else IMAGE_URL_ORIGINAL
+                imgItem.load(prefix + item.posterPath) {
                     transformations(RoundedCornersTransformation(IMAGE_CORNER_SIZE))
                     placeholder(R.drawable.ic_movies_64)
                     fallback(R.drawable.ic_movies_64)

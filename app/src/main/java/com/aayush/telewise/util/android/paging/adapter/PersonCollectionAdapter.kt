@@ -14,16 +14,18 @@ import com.aayush.telewise.util.android.base.BasePagingAdapter
 import com.aayush.telewise.util.android.base.BaseViewHolder
 import com.aayush.telewise.util.android.toast
 import com.aayush.telewise.util.common.IMAGE_CORNER_SIZE
+import com.aayush.telewise.util.common.IMAGE_URL_ORIGINAL
 import com.aayush.telewise.util.common.IMAGE_URL_W500
 
-class PersonCollectionAdapter : BasePagingAdapter<Person>(ListPersonCallback) {
+class PersonCollectionAdapter(private val saveData: Boolean) : BasePagingAdapter<Person>(ListPersonCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<out ViewBinding, Person> =
         ListPersonViewHolder(
             CardPersonCollectionBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            saveData
         ).also { holder ->
             holder.setOnClickListener { view ->
                 toast(view.context, getItem(holder.bindingAdapterPosition)?.name ?: "Loading...")
@@ -31,11 +33,13 @@ class PersonCollectionAdapter : BasePagingAdapter<Person>(ListPersonCallback) {
         }
 
     private inner class ListPersonViewHolder(
-        binding: CardPersonCollectionBinding
+        binding: CardPersonCollectionBinding,
+        private val saveData: Boolean
     ) : BaseViewHolder<CardPersonCollectionBinding, Person>(binding) {
         override fun bindTo(item: Person?) = with(binding) {
             if (item != null) {
-                imgPerson.load(IMAGE_URL_W500 + item.profilePath) {
+                val prefix = if (saveData) IMAGE_URL_W500 else IMAGE_URL_ORIGINAL
+                imgPerson.load(prefix + item.profilePath) {
                     transformations(RoundedCornersTransformation(IMAGE_CORNER_SIZE))
                     placeholder(R.drawable.ic_movies_64)
                     fallback(R.drawable.ic_movies_64)

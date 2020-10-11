@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aayush.telewise.MobileNavigationDirections
 import com.aayush.telewise.R
 import com.aayush.telewise.databinding.FragmentPeopleBinding
+import com.aayush.telewise.util.android.AppPreferences
 import com.aayush.telewise.util.android.log
 import com.aayush.telewise.util.android.paging.adapter.ItemLoadStateAdapter
 import com.aayush.telewise.util.android.paging.adapter.PersonCollectionAdapter
@@ -27,7 +28,10 @@ import com.aayush.telewise.util.android.viewBinding
 import com.aayush.telewise.util.common.ROOT_IDS
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PeopleFragment : Fragment(R.layout.fragment_people) {
@@ -35,6 +39,8 @@ class PeopleFragment : Fragment(R.layout.fragment_people) {
     private val viewModel by viewModels<PeopleViewModel>()
 
     private lateinit var adapter: PersonCollectionAdapter
+
+    @Inject lateinit var preferences: AppPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +81,11 @@ class PeopleFragment : Fragment(R.layout.fragment_people) {
         }
 
     private fun initAdapter() {
-        adapter = PersonCollectionAdapter()
+        adapter = PersonCollectionAdapter(
+            runBlocking {
+                preferences.saveData.first()
+            }
+        )
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         binding.recyclerPeople.layoutManager = GridLayoutManager(requireContext(), 2, RecyclerView.VERTICAL, false)

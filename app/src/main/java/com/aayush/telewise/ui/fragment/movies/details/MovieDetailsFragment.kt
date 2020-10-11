@@ -17,6 +17,7 @@ import com.aayush.telewise.R
 import com.aayush.telewise.api.model.TmdbFailure
 import com.aayush.telewise.databinding.FragmentMovieDetailsBinding
 import com.aayush.telewise.model.UiModel
+import com.aayush.telewise.util.android.AppPreferences
 import com.aayush.telewise.util.android.DotItemDecoration
 import com.aayush.telewise.util.android.adapter.CreditsAdapter
 import com.aayush.telewise.util.android.adapter.GenreAdapter
@@ -25,6 +26,7 @@ import com.aayush.telewise.util.android.toastLong
 import com.aayush.telewise.util.android.viewBinding
 import com.aayush.telewise.util.common.FB_PREFIX
 import com.aayush.telewise.util.common.IMAGE_URL_ORIGINAL
+import com.aayush.telewise.util.common.IMAGE_URL_W500
 import com.aayush.telewise.util.common.IMDB_MOVIE_PREFIX
 import com.aayush.telewise.util.common.INSTA_PREFIX
 import com.aayush.telewise.util.common.RETRY_COUNT
@@ -38,9 +40,12 @@ import com.aayush.telewise.util.common.toFormattedDate
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerializationException
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
@@ -51,6 +56,8 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private val movie by lazy(LazyThreadSafetyMode.NONE) {
         requireArguments().getParcelable<UiModel.MovieCollectionModel>("movie")!!
     }
+
+    @Inject lateinit var preferences: AppPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +93,12 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                 }
             }
         )
-        binding.layoutToolbar.imgToolbar.load(IMAGE_URL_ORIGINAL + movie.posterPath) {
+
+        val saveData = runBlocking {
+            preferences.saveData.first()
+        }
+        val prefix = if (saveData) IMAGE_URL_W500 else IMAGE_URL_ORIGINAL
+        binding.layoutToolbar.imgToolbar.load(prefix + movie.posterPath) {
             placeholder(R.drawable.ic_movies_64)
             fallback(R.drawable.ic_movies_64)
             error(R.drawable.ic_broken_image_64)
@@ -223,10 +235,13 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             findNavController().navigateUp()
         }
 
+        val saveData = runBlocking {
+            preferences.saveData.first()
+        }
         textLabelCast.isVisible = cast!!.isNotEmpty()
         veilCast.isVisible = cast.isNotEmpty()
         veilCast.addVeiledItems(VEILED_ITEM_COUNT)
-        val castAdapter = CreditsAdapter(cast)
+        val castAdapter = CreditsAdapter(cast, saveData)
         veilCast.getRecyclerView().setHasFixedSize(true)
         veilCast.setAdapter(
             castAdapter,
@@ -236,7 +251,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         textLabelCrew.isVisible = crew!!.isNotEmpty()
         veilCrew.isVisible = crew.isNotEmpty()
         veilCrew.addVeiledItems(VEILED_ITEM_COUNT)
-        val crewAdapter = CreditsAdapter(crew)
+        val crewAdapter = CreditsAdapter(crew, saveData)
         veilCrew.getRecyclerView().setHasFixedSize(true)
         veilCrew.setAdapter(
             crewAdapter,
